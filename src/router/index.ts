@@ -7,6 +7,9 @@ import axios from "axios";
 
 const URL_DEPORTES = import.meta.env.VITE_API_DEPORTES_URL;
 
+// Leer la variable de entorno VITE_BASE_URL y usar '/' si no está definida
+const BASE_URL = import.meta.env.VITE_BASE_URL || '/';
+
 if (!URL_DEPORTES) {
   console.error("VITE_API_DEPORTES_URL no está definida en las variables de entorno.");
 }
@@ -20,7 +23,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory('/kingtide/'),
+  history: createWebHistory(BASE_URL),
   routes,
 });
 
