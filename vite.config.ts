@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// Leer la variable de entorno VITE_BASE_URL y usar '/' si no está definida
-const BASE_URL = process.env.VITE_BASE_URL || '/';
- 
-// https://vite.dev/config/
-export default defineConfig({
-  base: BASE_URL,
-  plugins: [vue()],
-})
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+
+  return {
+    base: env.VITE_BASE_URL || '/', 
+    plugins: [vue()],
+  };
+});
